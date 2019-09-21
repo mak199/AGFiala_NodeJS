@@ -14,6 +14,7 @@ router.get('/login',(req,res)=>{
 
 router.post('/login',(req,res)=>{
    const {username,password} = req.body;
+   let errors = [];
    if(!username||!password) errors.push({msg:'Please fill in all fields'});
 
    res.status(200).send(username);
@@ -27,9 +28,10 @@ router.get('/register',(req,res)=>{
 
 router.post('/register',(req,res)=>{
     const {username,password} = req.body;
-   if(!username||!password) errors.push({msg:'Please fill in all fields'});
+    let errors = [];
+    if(!username||!password) errors.push({msg:'Please fill in all fields'});
 
-   res.status(200).send(username);
+    res.status(200).send(username);
 })
 
 module.exports = router;
