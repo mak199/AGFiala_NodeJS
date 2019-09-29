@@ -1,0 +1,38 @@
+<div class="row mt-5">  
+  <div class="col-md-6 m-auto">
+      <a href="/users/selectDB" class="btn btn-lg btn-secondary">Update DB</a>
+      <a href="/users/ucadUsers" class="btn btn-lg btn-secondary">UCAD Users</a>
+     <div class="card card-body">
+     <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>UCAD DB</h1>
+
+    <p>
+      <label>Table Name:</label><br>
+      <select id="DBtbl" class="dbTblOtions">
+      <option id="tbl0">Default</option>
+      <option id="tbl1">Fly Stocks</option>
+      <option id="tbl2">Primary Antibodies</option>
+      <option id="tbl3">Secondary Antibodies</option>
+      </select>
+    </p>
+    
+    <p>
+      <label>Set:</label>	<br>
+      <select id="dbAtts" class="dbTblOtions">
+      </select>
+      <input type="text" id = "attrVal" placeholder="Attribute" name="attrSetVal" required>
+    </p>
+    
+    <p>
+      <label>Where:</label><br>
+      <select id="dbAttsWhere"></select>
+      <input type="text" id = "attrVal2" placeholder="Attribute" name="attrWhereVal" required>
+    </p>
+
+    <button type="submit" class="btn btn-success btn-block">UPDATE</button>
+  </div>
+  <a href="/users/logout" class="btn btn-secondary">Logout</a>
+</div>
+</div>
+
+
+

@@ -1,0 +1,53 @@
+<div class="row mt-5">      
+  <div class="col-md-6 m-auto">
+    <a href="/users/ucadDB" class="btn btn-lg btn-secondary">Update DB</a>
+    <a href="/users/selectDB" class="btn btn-lg btn-secondary">Select DB</a>
+     <div class="card card-body">
+     <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>UCAD USERS</h1>
+        <form action="modifyUsers.php" method="post">
+        <div class="container">
+        
+            <p>
+                <label>Username:</label>
+                <input type="text" id = "user" placeholder="Enter Username" name = "user" required>
+            </p>
+            
+            <p>
+                <label>Password:</label>
+                <input type="password" id = "pass" placeholder="Enter Password" name="pass" required>
+            </p>
+            <p>
+                <label>User Type:</label><br>
+                <select id = "userMenu" name="usersMenu">
+                <option value="Student">Student</option>
+                <option value="Professor">Professor</option>
+                </select>
+            </p>
+            
+            
+                <!-- Example split danger button -->
+                <div class="btn-group">
+                        <button type="button" class="btn btn-success">Action</button>
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">ADD USER</a>
+                        <a class="dropdown-item" href="#">REMOVE USER </a>
+                        <a class="dropdown-item" href="#">CHANGE PASSWORD</a>
+        
+                </div>
+        
+        </div>
+    
+  </div>
+
+  </div>
+  <a href="/users/logout" class="btn btn-secondary">Logout</a>
+</div>
+
+
+
+
+
+
