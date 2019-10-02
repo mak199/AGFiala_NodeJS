@@ -45,7 +45,7 @@ exports.mySQL = function(){
       console.log("Database created");
     });
     */
-    var sql = "CREATE TABLE IF NOT EXISTS user (name VARCHAR(255),email VARCHAR(255), password VARCHAR(255), isAdmin Boolean,PRIMARY KEY(name,email))";
+    var sql = "CREATE TABLE IF NOT EXISTS user (name VARCHAR(255),email VARCHAR(255), password VARCHAR(255), isAdmin Boolean,PRIMARY KEY(email))";
     con.query(sql, function (err, result) {
       if (err) throw err;
       console.log("Table created");
