@@ -6,6 +6,7 @@ const _ = require('lodash');
 const passport = require('passport');
 const Joi = require('joi');
 const {ensureAuthenticated} = require('../config/auth');
+const {connection} = require('../startup/server');
 
 
 router.get('/login',(req,res)=>{
@@ -18,7 +19,7 @@ router.get('/register',(req,res)=>{
 
 router.get('/ucadUsers',ensureAuthenticated,(req,res)=>{
     res.render('ucadUsers',{
-     
+    
     });
 })
 
@@ -36,16 +37,11 @@ router.get('/selectDB',ensureAuthenticated,(req,res)=>{
 
 
 router.post('/register',async(req,res)=>{
-    let user;
     let errors = [];
     const {error} = validateUser(req.body);
-    const {email,password} = req.body;
+    const {name,email,password} = req.body;
     if(error) errors.push({msg:error.details[0].message});//return res.status(400).send(error.details[0].message);
     
-
-    user = await User.findOne({ email: email });
-    if (user) errors.push({msg:'Email already registered'});//return res.status(400).send("Email already registered.");
-  
     if(errors.length>0){
         res.render('register',{
             errors,
@@ -54,17 +50,29 @@ router.post('/register',async(req,res)=>{
         });
     }
     else{
-        user = new User({
-            email:req.body.email,
-            name:req.body.name,
-            password:req.body.password
-        });
         const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(user.password, salt);
-        await user.save();
-        const token = user.generateAuthToken();
-        req.flash('success_msg','You are now registered');
-        res.redirect("/users/register");
+        let hashPassword = await bcrypt.hash(password, salt);
+        var sql = `INSERT INTO user (name,email, password, isAdmin) VALUES (?,?,?,0)`;
+        connection.query(sql, [name,email,hashPassword] ,function (err, result) {
+            if (err){
+                errors.push({msg:err.message});
+                return res.render('register',{
+                    errors,
+                    email,
+                    password        
+                });
+            }
+            else{
+                  //const token = user.generateAuthToken();
+                req.flash('success_msg','You are now registered');
+                res.redirect("/users/register");
+            }
+
+               
+        });
+        
+
+      
     }
    
 });

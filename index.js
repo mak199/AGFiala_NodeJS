@@ -7,6 +7,8 @@ const expressLayout = require("express-ejs-layouts");
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const {mySQL} = require('./startup/server');
+ 
 
 require('./config/passport')(passport);
 
@@ -33,7 +35,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+mySQL();
 
 
 
@@ -51,6 +53,9 @@ app.use((req,res,next)=>{
 app.use(express.json());
 app.use('/students',students);
 app.use('/users',users);
+
+
+
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () =>
