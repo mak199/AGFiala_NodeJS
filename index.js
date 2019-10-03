@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const students = require('./routes/students');
 const users = require('./routes/users');
+const flies = require('./routes/flies');
 const mongoose = require('mongoose');
 const expressLayout = require("express-ejs-layouts");
 const flash = require('connect-flash');
@@ -53,7 +54,7 @@ app.use((req,res,next)=>{
 app.use(express.json());
 app.use('/students',students);
 app.use('/users',users);
-
+app.use('/flies',flies);
 
 
 
