@@ -1,0 +1,177 @@
+
+    <!DOCTYPE html>
+    <html>
+    <style>
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    };
+
+    th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    };
+    tr:nth-child(even){background-color: #f2f2f2};
+
+    th {
+    background-color: #4CAF50;
+    color: white;
+    };
+
+    .dropbtn, .optionsbtn, .updatebtn{
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    };
+
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    };
+    .updateButton {
+    position: relative;
+    display: inline-block;
+    };
+    .optionsButton {
+    position: relative;
+    display: inline-block;
+    };
+
+    .optionsbtn{
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    };
+
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    };
+
+    .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    };
+
+    .dropdown-content a:hover {background-color: #ddd;};
+
+    .dropdown:hover .dropdown-content {display: block;};
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;};
+
+    .updateButton{
+    visibility:visible;
+    };
+
+/* Set a style for all buttons */
+    button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    };
+
+    button:hover {
+    opacity: 0.8;
+    };
+
+
+
+    </style>
+
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="sorttable.js"></script>
+
+    </head>
+    <body>
+
+    <div class="dropdown-content">	
+        <a class="btn btn-success" id ="Select DB" href="/users/selectDB">Select DB</a>
+        <a class="btn btn-success" id ="UCAD Users" href="/users/ucadUsers">UCAD Users</a>	
+        <a class="btn btn-success" id ="UCAD DB" href="/users/ucadDB"> UCAD DB</a>	
+        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+    </div>
+    <table class="table table-hover ">
+            <caption>List of users</caption>
+            <thead>
+            <tr><th id='agfialaTbl' border = '4' style='cursor:pointer'>ID</th>
+					
+					
+                <th scope="col">Genotype (=Label)</th><th scope="col">Short Description</th><th scope="col">Stock</th><th scope="col">Stock.</th>
+                                                    
+                <th scope="col">Box</th><th scope="col">Position(A,B,C)</th><th scope="col">Position(1-13)</th><th scope="col">Status</th>
+                
+                <th scope="col">Status Comment</th><th scope="col">Originl User</th><th>Current User</th><th scope="col">Genetic Description</th>
+                
+                <th scope="col">Chromosome</th><th scope="col">Components and genes</th><th scope="col">Associated genes</th><th scope="col">Category</th>
+                
+                <th scope="col">Description</th><th scope="col">Citation (original)</th><th scope="col">tested</th><th scope="col">Phenotype</th><th scope="col">Comments</th>
+                
+                <th scope="col">published</th><th>Publication</th><th scope="col">Flybase ID</th><th scope="col">Flybase web link</th><th scope="col">Database DB</th>
+                
+                <th scope="col">Database ID</th><th scope="col">Stock comments</th><th>Donor</th><th scope="col">Donor ID</th>
+                
+                <th scope="col">Original Donor</th><th scope="col">Link</th>		
+                
+       
+            </tr>
+         </thead>
+         <tbody>
+            <% for (var i = 0; i < data.length; i++) { %>
+                <tr>
+                <td><%= data[i].ID %></td>
+                <td><%= data[i]['Genotype (=Label)'] %></td> 
+                <td><%= data[i]['Short Description'] %></td> 
+                <td><%= data[i].Stock %></td>
+                <td><%= data[i]['Stock.'] %></td> 
+                <td><%= data[i].Box %></td>
+                <td><%= data[i]['Position (A,B,C)'] %></td> 
+                <td><%= data[i]['Position (1-13)'] %></td>
+                <td><%= data[i].Status %></td> 
+                <td><%= data[i]['Status Comment'] %></td> 
+                <td><%= data[i]['Original User'] %></td> 
+                <td><%= data[i]['Current User'] %></td>  
+                <td><%= data[i]['Genetic Description'] %></td> 
+                <td><%= data[i]['Chromosome'] %></td> 
+                <td><%= data[i]['Components and genes'] %></td> 
+                <td><%= data[i]['Associated genes'] %></td> 
+                <td><%= data[i]['Category'] %></td> 
+                <td><%= data[i]['Description'] %></td> 
+                <td><%= data[i]['Citation (original)'] %></td> 
+                <td><%= data[i]['tested'] %></td> 
+                <td><%= data[i]['Phenotype'] %></td> 
+                <td><%= data[i]['comments'] %></td>              
+                <td><%= data[i]['published'] %></td> 
+                <td><%= data[i]['Publication'] %></td> 
+                <td><%= data[i]['Flybase ID'] %></td> 
+                <td><%= data[i]['Flybase web link'] %></td> 
+                <td><%= data[i]['Database DB'] %></td> 
+                <td><%= data[i]['Database ID'] %></td> 
+                <td><%= data[i]['Donor'] %></td> 
+                <td><%= data[i]['Donor ID'] %></td> 
+                <td><%= data[i]['Stock comments'] %></td> 
+                <td><%= data[i]['Original Donor'] %></td> 
+                <td><%= data[i]['Link'] %></td> 
+                </tr>    
+            <% } %>
+        </tbody>
+    </table>
+   
+ 
+    
+    </body>
+    </html>

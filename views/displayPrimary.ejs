@@ -1,0 +1,170 @@
+
+    <!DOCTYPE html>
+    <html>
+    <style>
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    };
+
+    th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    };
+    tr:nth-child(even){background-color: #f2f2f2};
+
+    th {
+    background-color: #4CAF50;
+    color: white;
+    };
+
+    .dropbtn, .optionsbtn, .updatebtn{
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    };
+
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    };
+    .updateButton {
+    position: relative;
+    display: inline-block;
+    };
+    .optionsButton {
+    position: relative;
+    display: inline-block;
+    };
+
+    .optionsbtn{
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    };
+
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    };
+
+    .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    };
+
+    .dropdown-content a:hover {background-color: #ddd;};
+
+    .dropdown:hover .dropdown-content {display: block;};
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;};
+
+    .updateButton{
+    visibility:visible;
+    };
+
+/* Set a style for all buttons */
+    button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    };
+
+    button:hover {
+    opacity: 0.8;
+    };
+
+
+
+    </style>
+
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="sorttable.js"></script>
+
+    </head>
+    <body>
+
+    <div class="dropdown-content">	
+        <a class="btn btn-success" id ="Select DB" href="/users/selectDB">Select DB</a>
+        <a class="btn btn-success" id ="UCAD Users" href="/users/ucadUsers">UCAD Users</a>	
+        <a class="btn btn-success" id ="UCAD DB" href="/users/ucadDB"> UCAD DB</a>	
+        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+    </div>
+    <table class="table table-hover ">
+            <caption>List of users</caption>
+            <thead>
+            <tr><th id='agfialaTbl' border = '4' style='cursor:pointer'>ID</th>
+					
+					
+                <th scope="col">Antibody (=Label)</th><th scope="col">Antigen</th><th scope="col">Antigen (abbrevation)</th><th scope="col">Box .</th>
+                                                    
+                <th scope="col">Species</th><th scope="col">Clonality</th><th scope="col">Status 1</th><th scope="col">Quantity</th>
+                
+                <th scope="col">Status 2</th><th scope="col">Aliquots (mu l)</th><th>Dilution</th><th scope="col">Storage</th>
+                
+                <th scope="col">Freezer</th><th scope="col">Original User</th><th scope="col">Current User</th><th scope="col">Donor</th>
+                
+                <th scope="col">Donor ID</th><th scope="col">Short description</th><th scope="col">Comments</th><th scope="col">Product form</th><th scope="col">Citation (original)</th>
+                
+                <th scope="col">Uniprot ID</th><th>Entrez Gene ID</th><th scope="col">Antibody Registry ID</th><th scope="col">Link</th><th scope="col">MyUnknownColumn</th>
+                
+    	
+                
+       
+            </tr>
+         </thead>
+         <tbody>
+            <% for (var i = 0; i < data.length; i++) { %>
+                <tr>
+              
+                <td><%= data[i].ID %></td>
+                <td><%= data[i]['Antibody (=Label)'] %></td> 
+                <td><%= data[i]['Antigen'] %></td> 
+                <td><%= data[i]['Antigen (abbrevation)'] %></td>
+                <td><%= data[i]['Box .'] %></td> 
+                <td><%= data[i]['Species'] %></td> 
+                <td><%= data[i]['Clonality'] %></td>
+                <td><%= data[i]['Status 1'] %></td> 
+                <td><%= data[i]['Quantity'] %></td> 
+                <td><%= data[i]['Status 2'] %></td> 
+                <td><%= data[i]['Aliquots (mu l)'] %></td>  
+                <td><%= data[i]['Dilution'] %></td> 
+                <td><%= data[i]['Storage'] %></td> 
+                <td><%= data[i]['Freezer'] %></td> 
+                <td><%= data[i]['Original User'] %></td> 
+                <td><%= data[i]['Current User'] %></td> 
+                <td><%= data[i]['Donor'] %></td> 
+                <td><%= data[i]['Donor ID'] %></td> 
+                <td><%= data[i]['Short description'] %></td> 
+                <td><%= data[i]['Comments'] %></td> 
+                <td><%= data[i]['Product form'] %></td>              
+                <td><%= data[i]['Citation (original)'] %></td> 
+                <td><%= data[i]['Uniprot ID'] %></td> 
+                <td><%= data[i]['Entrez Gene ID'] %></td> 
+                <td><%= data[i]['Antibody Registry ID'] %></td> 
+                <td><%= data[i]['Link'] %></td> 
+                <td><%= data[i]['MyUnknownColumn'] %></td> 
+                </tr>    
+            <% } %>
+        </tbody>
+    </table>
+   
+ 
+    
+    </body>
+    </html>

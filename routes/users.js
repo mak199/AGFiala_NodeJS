@@ -77,6 +77,13 @@ router.post('/register',async(req,res)=>{
    
 });
 
+router.get('/add',(req,res)=>{
+    const {email,password} = req.body;
+    console.log(email)
+    res.send(email);
+
+})
+
 router.post('/login',(req,res,next)=>{
     passport.authenticate('local',{
         successRedirect:'/users/selectDB',
