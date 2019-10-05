@@ -18,8 +18,8 @@ module.exports = function(passport){
             }
             else{
               bcrypt.compare(password,result[0].password,(err,isMatch)=>{
-                console.log(password);
-                console.log(result[0].password);
+                //console.log(password);
+                //console.log(result[0].password);
                 if(err) throw err;
                 if(isMatch) return done(null,result[0]);
                 else return done(null,false,{message:'password incorrect'});

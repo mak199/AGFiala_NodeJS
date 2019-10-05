@@ -77,12 +77,36 @@ router.post('/register',async(req,res)=>{
    
 });
 
-router.get('/add',(req,res)=>{
-    const {email,password} = req.body;
-    console.log(email)
-    res.send(email);
+router.post('/add',ensureAuthenticated,(req,res)=>{
+    const {email,password,isAdmin} = req.body;
+    console.log(email);
+    console.log(password);
+    console.log(isAdmin);
+    req.flash('success_msg','User has been added successfully');
+    res.send({redirect:'/users/ucadUsers'});
 
 })
+
+router.post('/remove',ensureAuthenticated,(req,res)=>{
+    const {email,password,isAdmin} = req.body;
+    console.log(email);
+    console.log(password);
+    console.log(isAdmin);
+    req.flash('success_msg','User has been Removed successfully');
+    res.send({redirect:'/users/ucadUsers'});
+
+})
+
+router.post('/change',ensureAuthenticated,(req,res)=>{
+    const {email,password,isAdmin} = req.body;
+    console.log(email);
+    console.log(password);
+    console.log(isAdmin);
+    req.flash('success_msg','User has been Updated successfully');
+    res.send({redirect:'/users/ucadUsers'});
+
+})
+
 
 router.post('/login',(req,res,next)=>{
     passport.authenticate('local',{
