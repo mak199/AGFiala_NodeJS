@@ -31,6 +31,11 @@ app.use(session({
   saveUninitialized:true
 }));
 
+var sess;
+app.get('/',function(req,res){
+    sess=req.session;
+    sess.email; // equivalent to $_SESSION['email'] in PHP.
+});
 
 
 app.use(passport.initialize());

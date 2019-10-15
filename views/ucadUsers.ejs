@@ -2,22 +2,7 @@
     
     <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery("#addBtn").click(function(e) {
-            var email = $("#email").val();
-            var password = $("#password").val();
-            var isAdmin = $("#userMenu").val();
-            jQuery.ajax({
-                type: 'POST',
-                url: '/users/add',
-                data:{email,password,isAdmin},
-                success: (data, textStatus, jqXHR) =>{
-                    if (typeof data.redirect == 'string')
-                        window.location.replace(window.location.protocol + "//" + window.location.host + data.redirect);
-                }
-                    
-            });
-            
-    });
+        
     jQuery("#removeBtn").click(function(e) {
         var email = $("#email").val();
         var password = $("#password").val();
@@ -50,7 +35,23 @@
         });
         
     });
-
+    jQuery("#addBtn").click(function(e) {
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var isAdmin = $("#userMenu").val();
+        jQuery.ajax({
+            type: 'POST',
+            url: '/users/add',
+            data:{name,email,password,isAdmin},
+            success: (data, textStatus, jqXHR) =>{
+                if (typeof data.redirect == 'string')
+                    window.location.replace(window.location.protocol + "//" + window.location.host + data.redirect);
+            }
+                
+        });
+        
+    });
 
     
     });
@@ -65,26 +66,29 @@
      <div class="card card-body">
      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>UCAD USERS</h1>
      <% include ./partials/messages %>
+     
         <div class="container">
-        
-            <p>
+            <form>
+                <label>Name:</label>
+                <input type="name" id = "name" placeholder="Enter Name" name = "name" value="<%= typeof name != 'undefined' ? name : '' %>" required>
+            </form><br>
+            <form>
                 <label>Email:</label>
-                <input type="text" id = "email" placeholder="Enter Email" name = "email" required>
-            </p>
-            
-            <p>
+                <input type="email" id = "email" placeholder="Enter Email" name = "email" value="<%= typeof email != 'undefined' ? email : '' %>" required>
+            </form><br>
+            <form>
                 <label>Password:</label>
                 <input type="password" id = "password" placeholder="Enter Password" name="password" required>
-            </p>
-            <p>
+            </form><br>
+            <form>
                 <label>User Type:</label><br>
                 <select id = "userMenu" name="usersMenu">
                 <option value="Student">Student</option>
                 <option value="Professor">Professor</option>
                 </select>
-            </p>
-            
-            
+            </form> <br>
+
+             <form>
                 <!-- Example split danger button -->
                 <div class="btn-group">
                         <button type="button" class="btn btn-success">Action</button>
@@ -92,11 +96,13 @@
                         <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
-                            <a id='addBtn' class="dropdown-item" href="#">ADD USER</a>
+                            <a id='addBtn' class="dropdown-item" href="#">ADD USER </a>
                             <a id='removeBtn' class="dropdown-item" href="#">REMOVE USER </a>
                             <a id='changeBtn' class="dropdown-item" href="#">CHANGE PASSWORD</a>
+                            <a id='makeadminBtn' class="dropdown-item" href="#">MAKE ADMIN</a>
                         </div>
                 </div>
+            </form>
         
         </div>
     </div>

@@ -18,31 +18,13 @@ module.exports = function(passport){
             }
             else{
               bcrypt.compare(password,result[0].password,(err,isMatch)=>{
-                //console.log(password);
-                //console.log(result[0].password);
-                if(err) throw err;
-                if(isMatch) return done(null,result[0]);
-                else return done(null,false,{message:'password incorrect'});
+              if(err) throw err;
+              if(isMatch) return done(null,result[0]);
+              else return done(null,false,{message:'password incorrect'});
              });
             }
           });
-           
-            
-       
-        
-
-            // match user
-            /*User.findOne({email})
-                .then(user=>{
-                    if(!user) return done(null,false,{message:'That email is not registered'});
-                     //Match password
-                     bcrypt.compare(password,user.password,(err,isMatch)=>{
-                        if(err) throw err;
-                        if(isMatch) return done(null,user);
-                        else return done(null,false,{message:'password incorrect'});
-                     });
-                })
-                .catch((err)=>console.log(err));*/
+              
         })
     );
     passport.serializeUser((user, done)=> {
