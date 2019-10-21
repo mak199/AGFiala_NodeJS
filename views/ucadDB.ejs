@@ -29,11 +29,14 @@ $("#DBtbl").on('click', function(){
       ///window.location.replace(window.location.protocol + "//" + window.location.host + data.redirect);
       //$('#status').append(data.result[0]['F1']);
       //$('#status').html(data.result[0]['F1']);
-      for(i=0;i<31;i++){
-        $('<option id="status">').html(
-            data.result[0]['F'+(i+1)]+"</option>"
-            ).appendTo('#dbAtts');
-        }
+      $('#dbAtts').empty();
+      for(let i=0;i<34;i++){  
+        if(data.result[0]['F'+(i+1)]!=''){  
+          $('<option id="status">').html(
+              data.result[0]['F'+(i+1)]+"</option>"
+              ).appendTo('#dbAtts');
+          }
+      }
      
     }
 
@@ -48,8 +51,8 @@ $("#DBtbl").on('click', function(){
 
 <div class="row mt-5">  
   <div class="col-md-6 m-auto">
-      <a href="/users/selectDB" class="btn btn-lg btn-secondary">Update DB</a>
-      <a href="/users/ucadUsers" class="btn btn-lg btn-secondary">UCAD Users</a>
+      <a href="/users/selectDB" class="btn btn-lg btn-secondary">SELECT DB</a>
+      <a href="/users/ucadUsers" class="btn btn-lg btn-secondary">UCAD USERS</a>
       <% include ./partials/messages %>
       <div class="card card-body">
      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>UCAD DB</h1>
