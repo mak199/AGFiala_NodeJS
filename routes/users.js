@@ -18,15 +18,27 @@ router.get('/register',(req,res)=>{
 });
 
 router.get('/ucadUsers',(req,res)=>{
-    res.render('ucadUsers',{
-    
-    });
+    if(currentUser.isAdmin==1){
+        res.render('ucadUsers',{
+        
+        });
+    }else{
+        req.flash('error_msg','You are not an Admin');
+        res.redirect("/users/selectDB");
+    }
 })
 
 router.get('/ucadDB',(req,res)=>{
-    res.render('ucadDB',{
-        result: [] 
-    });
+    if(currentUser.isAdmin==1){
+        const {name,email,password} = req.body;
+        console.log(name);
+        res.render('ucadDB',{
+            result: [] 
+        });
+    }else{
+        req.flash('error_msg','You are not an Admin');
+        res.redirect("/users/selectDB");
+    }
 })
 
 router.get('/selectDB',ensureAuthenticated,(req,res)=>{
@@ -110,10 +122,10 @@ router.post('/remove',ensureAuthenticated,async(req,res)=>{
 
 
 router.post('/add',async(req,res,next)=>{
-    const {name,email,password,isAdmin} = req.body;
-    let authority = 0;
-
-    if(authority==1){
+    const {name,email,password} = req.body;
+    
+    console.log(currentUser.name);
+    if(currentUser.isAdmin==1){
         const salt = await bcrypt.genSalt(10);
         let hashPassword = await bcrypt.hash(password, salt);
         var sql = `INSERT INTO user (name,email, password, isAdmin) VALUES (?,?,?,?)`;

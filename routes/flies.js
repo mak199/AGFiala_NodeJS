@@ -32,12 +32,29 @@ router.get('/flyStocks',ensureAuthenticated,async(req,res)=>{
         
         }
         else{
+            console.log("here");
             return res.render('displayFlyStocks',{ 
                 data:result
             });
         }
     });
 
+});
+
+router.get('/flyStocks2',ensureAuthenticated,async(req,res)=>{
+    var sql = `SELECT * FROM flystocks`;
+    let errors = [];
+    connection.query(sql ,function (err, result) {
+        if (err){
+            errors.push({msg:err.message});
+        
+        }
+        else{
+            console.log("here");
+            res.send({redirect:'/flies/flystocks',data:result});
+
+        }
+    });
 });
 
 router.get('/primaryStocks',ensureAuthenticated,async(req,res)=>{

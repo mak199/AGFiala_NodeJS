@@ -94,7 +94,25 @@
 
     <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="sorttable.js"></script>
+    <script src="../sorttable.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#agfialaTbl").on("click", function(){
+                jQuery.ajax({
+                    type: 'GET',
+                    url: '/flies/flyStocks2',
+                    success: (data, textStatus, jqXHR) =>
+                    { 
+                        if (typeof data.redirect == 'string'){
+                            window.location.replace(window.location.protocol + "//" + window.location.host + data.redirect);
+                        }
+                    }
+                });
+             
+            });
+        });
+
+    </script>
 
     </head>
     <body>
@@ -105,27 +123,27 @@
         <a class="btn btn-success" id ="UCAD DB" href="/users/ucadDB"> UCAD DB</a>	
         <a href="/users/logout" class="btn btn-secondary">Logout</a>
     </div>
-    <table class="table table-hover ">
+    <table border = '1' class="table table-hover sortable">
             <caption>List of users</caption>
             <thead>
-            <tr><th id='agfialaTbl' border = '4' style='cursor:pointer'>ID</th>
+            <tr id='agfialaTbl'><th style='cursor:pointer'>ID</th>
 					
 					
-                <th scope="col">Genotype (=Label)</th><th scope="col">Short Description</th><th scope="col">Stock</th><th scope="col">Stock.</th>
+                <th style='cursor:pointer'>Genotype (=Label)</th><th style='cursor:pointer'>Short Description</th><th style='cursor:pointer'>Stock</th><th style='cursor:pointer'>Stock.</th>
                                                     
-                <th scope="col">Box</th><th scope="col">Position(A,B,C)</th><th scope="col">Position(1-13)</th><th scope="col">Status</th>
+                <th style='cursor:pointer'>Box</th><th style='cursor:pointer'>Position(A,B,C)</th><th style='cursor:pointer'>Position(1-13)</th><th style='cursor:pointer'>Status</th>
                 
-                <th scope="col">Status Comment</th><th scope="col">Originl User</th><th>Current User</th><th scope="col">Genetic Description</th>
+                <th style='cursor:pointer'>Status Comment</th><th style='cursor:pointer'>Originl User</th><th>Current User</th><th style='cursor:pointer'>Genetic Description</th>
                 
-                <th scope="col">Chromosome</th><th scope="col">Components and genes</th><th scope="col">Associated genes</th><th scope="col">Category</th>
+                <th style='cursor:pointer'>Chromosome</th><th style='cursor:pointer'>Components and genes</th><th style='cursor:pointer'>Associated genes</th><th style='cursor:pointer'>Category</th>
                 
-                <th scope="col">Description</th><th scope="col">Citation (original)</th><th scope="col">tested</th><th scope="col">Phenotype</th><th scope="col">Comments</th>
+                <th style='cursor:pointer'>Description</th><th style='cursor:pointer'>Citation (original)</th><th style='cursor:pointer'>tested</th><th style='cursor:pointer'>Phenotype</th><th style='cursor:pointer'>Comments</th>
                 
-                <th scope="col">published</th><th>Publication</th><th scope="col">Flybase ID</th><th scope="col">Flybase web link</th><th scope="col">Database DB</th>
+                <th style='cursor:pointer'>published</th><th>Publication</th><th style='cursor:pointer'>Flybase ID</th><th style='cursor:pointer'>Flybase web link</th><th style='cursor:pointer'>Database DB</th>
                 
-                <th scope="col">Database ID</th><th scope="col">Stock comments</th><th>Donor</th><th scope="col">Donor ID</th>
+                <th style='cursor:pointer'>Database ID</th><th style='cursor:pointer'>Stock comments</th><th>Donor</th><th style='cursor:pointer'>Donor ID</th>
                 
-                <th scope="col">Original Donor</th><th scope="col">Link</th>		
+                <th style='cursor:pointer'>Original Donor</th><th style='cursor:pointer'>Link</th>		
                 
        
             </tr>

@@ -17,6 +17,12 @@ module.exports = function(passport){
               return done(err);//throw err;
             }
             else{
+              global.currentUser = {
+                name: result[0].name,
+                isAdmin:result[0].isAdmin
+              };
+              console.log(currentUser.name);
+
               bcrypt.compare(password,result[0].password,(err,isMatch)=>{
               if(err) throw err;
               if(isMatch) return done(null,result[0]);
