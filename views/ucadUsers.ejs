@@ -54,12 +54,22 @@
     });
 
     jQuery("#makeadminBtn").click(function(e) {
-        console.log("remains");
+        var email = $("#email").val();
+        jQuery.ajax({
+            type: 'POST',
+            url: '/users/makeAdmin',
+            data:{email},
+            success: (data, textStatus, jqXHR) =>{
+                if (typeof data.redirect == 'string')
+                    window.location.replace(window.location.protocol + "//" + window.location.host + data.redirect);
+            }
+                
+        });
 
     });
     
     });
-
+    
   
 
 </script>

@@ -46,6 +46,7 @@ else{
   console.log("Remote connection");
 }
 
+
 exports.mySQL = function(){
   con.connect(function(err) {
     if (err) throw err;
@@ -54,13 +55,13 @@ exports.mySQL = function(){
       if (err) throw err;
       console.log("Database created");
     });
-    */
+    
     var sql = "CREATE TABLE IF NOT EXISTS user (name VARCHAR(255),email VARCHAR(255), password VARCHAR(255), isAdmin Boolean,PRIMARY KEY(email))";
     con.query(sql, function (err, result) {
       if (err) throw err;
       console.log("Table created");
     });
-    
+    */
   });
 }
 

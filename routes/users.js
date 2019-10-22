@@ -17,7 +17,7 @@ router.get('/register',(req,res)=>{
     res.render("register");
 });
 
-router.get('/ucadUsers',(req,res)=>{
+router.get('/ucadUsers',ensureAuthenticated,(req,res)=>{
     if(currentUser.isAdmin==1){
         res.render('ucadUsers',{
         
@@ -28,7 +28,7 @@ router.get('/ucadUsers',(req,res)=>{
     }
 })
 
-router.get('/ucadDB',(req,res)=>{
+router.get('/ucadDB',ensureAuthenticated,(req,res)=>{
     if(currentUser.isAdmin==1){
         const {name,email,password} = req.body;
         console.log(name);
@@ -119,27 +119,22 @@ router.post('/remove',ensureAuthenticated,async(req,res)=>{
 router.post('/add',ensureAuthenticated,async(req,res,next)=>{
     const {name,email,password,isAdmin} = req.body;
     
-    console.log(currentUser.name);
-    if(currentUser.isAdmin==1){
-        const salt = await bcrypt.genSalt(10);
-        let hashPassword = await bcrypt.hash(password, salt);
-        var sql = `INSERT INTO user (name,email, password, isAdmin) VALUES (?,?,?,?)`;
-        connection.query(sql, [name,email,hashPassword,isAdmin] ,function (err, result) {
-            if (err){
-                req.flash('error_msg',err.message);
-                res.send({redirect:'/users/ucadUsers'});
-            }
-            else{
-                req.flash('success_msg','User has been added successfully');
-                res.send({redirect:'/users/ucadUsers'});
+    
+    const salt = await bcrypt.genSalt(10);
+    let hashPassword = await bcrypt.hash(password, salt);
+    var sql = `INSERT INTO user (name,email, password, isAdmin) VALUES (?,?,?,?)`;
+    connection.query(sql, [name,email,hashPassword,isAdmin] ,function (err, result) {
+        if (err){
+            req.flash('error_msg',err.message);
+            res.send({redirect:'/users/ucadUsers'});
+        }
+        else{
+            req.flash('success_msg','User has been added successfully');
+            res.send({redirect:'/users/ucadUsers'});
 
-            }           
-        });
-    }
-    else{
-        req.flash('error_msg','You are not an Admin');
-        res.send({redirect:'/users/ucadUsers'});
-    }
+        }           
+    });
+ 
 });
 
 router.post('/change',ensureAuthenticated,async(req,res)=>{
@@ -161,6 +156,32 @@ router.post('/change',ensureAuthenticated,async(req,res)=>{
     });
    
 })
+
+
+router.post('/makeAdmin',ensureAuthenticated,async(req,res)=>{
+    const {email,isAdmin} = req.body;
+
+    if(!isAdmin){
+        const salt = await bcrypt.genSalt(10);
+        var sql = `UPDATE user SET isAdmin = 1 WHERE email = ?`;
+        connection.query(sql, [email] ,function (err, result) {
+            if (err){
+                req.flash('error_msg',err.message);
+                res.send({redirect:'/users/ucadUsers'});
+            }
+            else{
+                req.flash('success_msg','Has been made Admin!');
+                res.send({redirect:'/users/ucadUsers'});
+    
+            }           
+        });
+    }
+    else{
+        req.flash('error_msg','Is already an admin!');
+        res.send({redirect:'/users/ucadUsers'});
+    }
+   
+});
 
 
 router.post('/login',(req,res,next)=>{
