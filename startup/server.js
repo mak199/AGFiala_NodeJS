@@ -27,14 +27,24 @@ module.exports = function(){
   
     
 }
-
 */
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "pak123",
-  database:'agfiala'
-});
+if(process.env.server=="local"){
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "pak123",
+    database:'agfiala'
+  });
+}
+else{
+  var con = mysql.createConnection({
+    host: "us-cdbr-iron-east-05.cleardb.net",
+    user: "b3b4cb3bf75ee1",
+    password: "0f2c3aee",
+    database:'heroku_b1c36f8732994cd'
+  });
+  console.log("Remote connection");
+}
 
 exports.mySQL = function(){
   con.connect(function(err) {
