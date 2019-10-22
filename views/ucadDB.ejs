@@ -53,10 +53,9 @@ $("#DBtbl").on('click', function(){
   <div class="col-md-6 m-auto">
       <a href="/users/selectDB" class="btn btn-lg btn-secondary">SELECT DB</a>
       <a href="/users/ucadUsers" class="btn btn-lg btn-secondary">UCAD USERS</a>
-      <% include ./partials/messages %>
       <div class="card card-body">
      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>UCAD DB</h1>
-
+     <% include ./partials/messages %>
     <p>
       <label>Table Name:</label><br>
       <select id="DBtbl" class="dbTblOtions">

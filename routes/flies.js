@@ -5,7 +5,7 @@ const router = express.Router();
 const {connection} = require('../startup/server');
 const {ensureAuthenticated} = require('../config/auth');
 
-router.post('/updateDBMenu',(req,res)=>{
+router.post('/updateDBMenu',ensureAuthenticated,(req,res)=>{
     let {table} = req.body;    
     if(table!='Default'){
         var sql = "SELECT * FROM featuresoftable WHERE TableName="+"'"+table.replace(/\s/g, '')+"'";
@@ -91,7 +91,7 @@ router.get('/secondaryStocks',ensureAuthenticated,async(req,res)=>{
 
 });
 
-router.post('/update',async(req,res)=>{
+router.post('/update',ensureAuthenticated,async(req,res)=>{
     let {table,setAttr,setVal,whereVal} = req.body;
     table = table.toLowerCase().replace(/\s/g, '').replace(/\'/gi,'');
 
