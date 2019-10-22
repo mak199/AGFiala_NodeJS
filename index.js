@@ -9,8 +9,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const {mySQL} = require('./startup/server');
-const cool = require('cool-ascii-faces');
-const path = require('path')
+//const cool = require('cool-ascii-faces');
+//const path = require('path')
  
 
 require('./config/passport')(passport);
@@ -19,12 +19,12 @@ require('./config/passport')(passport);
 mongoose.connect('mongodb://localhost:/agfiala', {useNewUrlParser: true,useUnifiedTopology: true})
   .then(()=>console.log("Connected to mongoDB..."));
 
-app.use(express.static(path.join(__dirname, 'public')))
-app.set('views', path.join(__dirname, 'views'))
+//app.use(express.static(path.join(__dirname, 'public')))
+//app.set('views', path.join(__dirname, 'views'))
 app.use(expressLayout);
 app.set('view engine','ejs');
 app.get('/', (req, res) => res.render('pages/index'));
-app.get('/cool', (req, res) => res.send(cool()));
+//app.get('/cool', (req, res) => res.send(cool()));
 
 // Bodyparser
 app.use(express.urlencoded({extended:false}));
@@ -69,7 +69,8 @@ app.use('/flies',flies);
 
 
 
-const port = process.env.PORT || 3000;
+//const port = process.env.PORT || 3000;
+const port = 3000;
 const server = app.listen(port, () =>
   console.log(`Listening on port ${port}...`)
 );
