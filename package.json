@@ -1,7 +1,7 @@
 {
-  "name": "Library_project",
+  "name": "AG_Fiala",
   "version": "1.0.0",
-  "description": "Library_project",
+  "description": "AG_Fiala",
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mak199/Library_project.git"
+    "url": "git+https://github.com/mak199/AGFiala_NodeJS.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mak199/Library_project/issues"
+    "url": "git+https://github.com/mak199/AGFiala_NodeJS/issues"
   },
-  "homepage": "https://github.com/mak199/Library_project#readme",
+  "homepage": "git+https://github.com/mak199/AGFiala_NodeJS#readme",
   "dependencies": {
     "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
